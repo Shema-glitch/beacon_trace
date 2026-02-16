@@ -33,10 +33,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground font-sans`}
       >
-        <SpeedInsights />
         <Navbar />
         <main className="flex-1">
           {children}
+          <SpeedInsights />
         </main>
         <Footer />
       </body>
