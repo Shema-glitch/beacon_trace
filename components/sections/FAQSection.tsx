@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { buttonVariants } from "@/components/ui/Button";
 
 const faqs = [
     {
@@ -90,6 +92,25 @@ export function FAQSection() {
                         </motion.div>
                     ))}
                 </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="mt-16 text-center"
+                >
+                    <p className="text-text-secondary mb-4">
+                        Still have questions? We're here to help.
+                    </p>
+                    <Link
+                        href="https://github.com/Start-Shema"
+                        target="_blank"
+                        className={buttonVariants("secondary", "sm")}
+                    >
+                        Reach Out
+                    </Link>
+                </motion.div>
             </div>
         </section>
     );

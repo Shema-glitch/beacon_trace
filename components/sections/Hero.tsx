@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { MoveRight, Wifi, Smartphone, Bluetooth, Battery, Info } from "lucide-react";
+import { MoveRight, Smartphone, Bluetooth } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { motion, Variants } from "framer-motion";
 
@@ -40,7 +40,7 @@ export function Hero() {
                 >
                     <motion.div variants={itemVariants} className="inline-flex w-fit items-center rounded-full border border-border bg-bg-secondary px-3 py-1 text-xs font-medium text-text-secondary">
                         <span className="mr-2 h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
-                        Prototype Phase • Join waitlist
+                        Concept Phase • In Development
                     </motion.div>
 
                     <motion.h1 variants={itemVariants} className="font-heading text-4xl font-bold tracking-tight text-text-primary sm:text-5xl md:text-6xl text-balance">
@@ -55,10 +55,10 @@ export function Hero() {
                     <motion.div variants={itemVariants} className="flex flex-col space-y-3">
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link
-                                href="#waitlist"
+                                href="#how-it-works"
                                 className={buttonVariants("primary", "lg")}
                             >
-                                Join the Waitlist
+                                How it Works
                             </Link>
 
                             <Link
@@ -71,111 +71,87 @@ export function Hero() {
                             </Link>
                         </div>
                         <p className="text-xs text-text-secondary italic">
-                            *Prototype build. Core functionality requires active development setup.
+                            *Concept visualization. Product is currently in early design phase.
                         </p>
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="pt-4 text-xs font-mono text-text-secondary">
-                        Prototype v0.8 • Local Bluetooth Only
+                        Design v0.1 • Local Bluetooth Protocol
                     </motion.div>
                 </motion.div>
 
-                {/* Visual: Enhanced Schematic UI */}
+                {/* Visual: Minimalist Concept UI */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                    className="relative lg:h-full flex items-center justify-center lg:justify-end"
+                    initial={{ opacity: 0, scale: 0.95, rotate: 1 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    className="relative lg:h-full flex items-center justify-center lg:justify-end py-12 lg:py-0"
                 >
-                    <div className="relative w-full max-w-[320px] rounded-[3rem] border-4 border-zinc-800 bg-black p-2 shadow-2xl ring-1 ring-white/10">
-                        {/* Screen Content */}
-                        <div className="relative overflow-hidden rounded-[2.5rem] bg-zinc-950 aspect-[9/19] flex flex-col">
+                    {/* Glass Container - Abstract Device */}
+                    <div className="relative w-full max-w-sm rounded-3xl border border-white/10 bg-zinc-900/60 backdrop-blur-2xl p-8 shadow-2xl ring-1 ring-white/5 overflow-hidden">
 
-                            {/* Status Bar Mock */}
-                            <div className="flex justify-between px-6 py-3 text-[10px] text-zinc-400 font-mono items-center">
-                                <span>09:41</span>
-                                <div className="flex gap-2 items-center">
-                                    <Bluetooth size={12} className="text-zinc-500" />
-                                    <Wifi size={12} className="text-zinc-600" />
-                                    <div className="flex items-center gap-0.5">
-                                        <span className="text-[9px]">100%</span>
-                                        <Battery size={12} className="text-zinc-400" />
-                                    </div>
+                        {/* Internal Glow */}
+                        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-accent/20 blur-[80px] rounded-full pointer-events-none opacity-50" />
+
+                        {/* Header: Status */}
+                        <div className="relative flex justify-between items-center mb-10 z-10">
+                            <div className="flex items-center gap-3">
+                                <div className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+                                </div>
+                                <span className="font-mono text-xs text-accent tracking-widest uppercase">Scanning</span>
+                            </div>
+                            <Bluetooth size={16} className="text-zinc-500" />
+                        </div>
+
+                        {/* Core Metric: Signal Strength */}
+                        <div className="relative z-10 flex flex-col items-center justify-center py-6 space-y-2">
+                            <div className="text-6xl font-sans font-bold text-white tracking-tighter">
+                                -68
+                            </div>
+                            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                                dBm Signal Strength
+                            </div>
+                        </div>
+
+                        {/* Interactive Visual: Bars */}
+                        <div className="relative z-10 flex justify-center gap-1.5 h-16 items-end my-8 opacity-90">
+                            {[20, 35, 50, 65, 80, 55, 30].map((h, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ height: "10%" }}
+                                    animate={{ height: `${h}%` }}
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "mirror",
+                                        duration: 0.8,
+                                        delay: i * 0.1,
+                                    }}
+                                    className={`w-3 rounded-t-sm ${i === 4 ? 'bg-accent shadow-[0_0_12px_rgba(34,197,94,0.5)]' : 'bg-zinc-800'}`}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Device Info Card */}
+                        <div className="relative z-10 mt-6 rounded-xl bg-zinc-800/50 p-4 border border-zinc-700/50 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-lg bg-zinc-900 text-zinc-400">
+                                    <Smartphone size={16} />
+                                </div>
+                                <div>
+                                    <div className="text-sm font-medium text-zinc-200">Unknown Device</div>
+                                    <div className="text-[10px] font-mono text-zinc-500">ID: 4A:2B:9C...</div>
                                 </div>
                             </div>
-
-                            {/* App Content */}
-                            <div className="flex-1 px-6 py-4 flex flex-col relative z-10">
-
-                                {/* Header */}
-                                <div className="flex justify-between items-center mb-8">
-                                    <div className="text-sm font-bold text-zinc-100 flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                                        SCANNING
-                                    </div>
-                                    <Info size={16} className="text-zinc-600" />
-                                </div>
-
-                                {/* Target Device Card */}
-                                <div className="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 mb-8 flex flex-col items-center space-y-4">
-                                    <div className="relative">
-                                        <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center ring-1 ring-accent/20">
-                                            <Smartphone className="text-accent h-10 w-10" />
-                                        </div>
-                                        {/* Ripple Effect */}
-                                        <div className="absolute inset-0 rounded-full border border-accent/20 animate-[ping_2s_linear_infinite] opacity-50"></div>
-                                    </div>
-
-                                    <div className="text-center">
-                                        <h3 className="font-sans font-semibold text-lg text-white">Pixel 7 Pro</h3>
-                                        <p className="font-mono text-xs text-zinc-500 mt-1">ID: 8A:2F:11:4C:C9</p>
-                                        <div className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 bg-accent/10 rounded text-[10px] font-medium text-accent">
-                                            <Bluetooth size={10} />
-                                            CONNECTED
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Signal Meter */}
-                                <div className="w-full space-y-6 flex-1 flex flex-col justify-center">
-                                    <div className="flex justify-between text-[10px] text-zinc-500 font-mono tracking-wider uppercase">
-                                        <span>Proximity</span>
-                                        <span>Strong</span>
-                                    </div>
-
-                                    {/* Meter SVG */}
-                                    <div className="h-16 flex gap-1.5 items-end justify-center px-4">
-                                        {[30, 45, 60, 75, 90, 60, 40].map((h, i) => (
-                                            <div
-                                                key={i}
-                                                className={`w-full rounded-sm transition-all duration-300 ${i === 4 ? 'bg-accent shadow-[0_0_15px_rgba(34,197,94,0.4)]' : 'bg-zinc-800'}`}
-                                                style={{ height: `${h}%` }}
-                                            />
-                                        ))}
-                                    </div>
-
-                                    <div className="text-center">
-                                        <div className="font-mono text-3xl text-white font-bold tracking-tighter">
-                                            -68 <span className="text-sm text-zinc-500 font-normal">dBm</span>
-                                        </div>
-                                        <p className="text-[10px] text-zinc-500 mt-1 uppercase tracking-widest">Signal Strength</p>
-                                    </div>
-                                </div>
-
-                                {/* Action Button */}
-                                <div className="mt-auto pt-6">
-                                    <button className="w-full py-4 bg-white text-black font-bold rounded-xl text-sm hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
-                                        PING DEVICE
-                                    </button>
-                                </div>
-
-                            </div>
-
+                            <div className="h-2 w-2 rounded-full bg-yellow-500/50" />
                         </div>
                     </div>
 
-                    {/* Decorative Elements */}
-                    <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
+                    {/* Background Decorative Blob */}
+                    <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20">
+                        <div className="absolute inset-0 bg-accent/10 blur-[100px] rounded-full animation-pulse" />
+                    </div>
                 </motion.div>
             </div>
         </section>

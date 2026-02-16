@@ -24,15 +24,20 @@ export function HowItWorks() {
     return (
         <section id="how-it-works" className="py-32 bg-bg-secondary border-t border-border">
             <div className="mx-auto max-w-5xl px-6 md:px-8">
-                <motion.h2
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="mb-12 text-center text-3xl font-bold tracking-tight text-text-primary"
+                    className="mb-16 text-center"
                 >
-                    How it works. Explained.
-                </motion.h2>
+                    <h2 className="text-3xl font-bold tracking-tight text-text-primary">
+                        How it works
+                    </h2>
+                    <p className="mt-4 text-text-secondary">
+                        Offline device detection in three simple steps.
+                    </p>
+                </motion.div>
 
                 <div className="grid gap-8 md:grid-cols-3">
                     {steps.map((step, index) => (
@@ -42,17 +47,19 @@ export function HowItWorks() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="flex flex-col items-center text-center space-y-4"
+                            className="h-full"
                         >
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-primary border border-border shadow-sm text-accent">
-                                <step.icon className="h-6 w-6" />
+                            <div className="flex flex-col h-full rounded-2xl border border-border bg-bg-primary p-6 hover:border-accent/30 transition-colors">
+                                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-bg-secondary text-accent">
+                                    <step.icon className="h-6 w-6" />
+                                </div>
+                                <h3 className="mb-2 text-lg font-semibold text-text-primary">
+                                    {step.title}
+                                </h3>
+                                <p className="text-sm text-text-secondary leading-relaxed">
+                                    {step.description}
+                                </p>
                             </div>
-                            <h3 className="text-lg font-semibold text-text-primary">
-                                {step.title}
-                            </h3>
-                            <p className="text-sm text-text-secondary leading-relaxed max-w-[280px]">
-                                {step.description}
-                            </p>
                         </motion.div>
                     ))}
                 </div>
