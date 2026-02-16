@@ -101,7 +101,7 @@ export function FAQSection() {
                     className="mt-16 text-center"
                 >
                     <p className="text-text-secondary mb-4">
-                        Still have questions? We're here to help.
+                        Still have questions? We&apos;re here to help.
                     </p>
                     <Link
                         href="https://github.com/Start-Shema"
